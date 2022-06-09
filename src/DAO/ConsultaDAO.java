@@ -98,40 +98,38 @@ public class ConsultaDAO {
         }
     }
     
-    public List<Consulta> joins(){
-               PreparedStatement ps = null;
-               Connection connL = null;
-               ResultSet rs = null;
-               ArrayList join = new ArrayList();
-               
-               Consulta consulta = new Consulta();
-               Medicos medico = new Medicos();
-               Pacientes pacientes = new Pacientes();
-               
-           try{
-               String sql = "SELECT consultas.data, consultas.hora, pacientes.nome_pac, medicos.nome_med FROM medicos, pacientes, consultas WHERE consultas.id_medico = medicos.id AND consultas.id_paciente = pacientes.codigo ORDER BY consultas.data, consultas.hora";
-               connL = this.conn;
-               ps = connL.prepareStatement(sql);
-               rs = ps.executeQuery();
-               
-               while(rs.next()){
-                   DateFormat dtOutput = new SimpleDateFormat("dd/MM/yyyy");
-                   consulta.setData(rs.getDate("data"));
-                   consulta.setHora(rs.getTime("hora"));
-                   pacientes.setNome_pac(rs.getString("pacientes.nome_pac"));
-                   medico.setNome_med("medicos.nome_med");
-                   consulta.setCompareceu(rs.getInt("compareceu"));
-                   
-                   
-                   
-                   join.add(consulta);
-               }
-               
-           }catch(Exception ex){
-                JOptionPane.showMessageDialog(null, "Erro de conexão com o banco!");
-           }
-           return join;
-    }
+//    public List<Consulta> joins(){
+//               PreparedStatement ps = null;
+//               Connection connL = null;
+//               ResultSet rs = null;
+//               ArrayList join = new ArrayList();
+//               
+//               Consulta consulta = new Consulta();
+//               Medicos medico = new Medicos();
+//               Pacientes pacientes = new Pacientes();
+//               
+//           try{
+//               String sql = "SELECT consultas.data, consultas.hora, pacientes.nome_pac, medicos.nome_med FROM medicos, pacientes, consultas WHERE consultas.id_medico = medicos.id AND consultas.id_paciente = pacientes.codigo ORDER BY consultas.data, consultas.hora";
+//               connL = this.conn;
+//               ps = connL.prepareStatement(sql);
+//               rs = ps.executeQuery();
+//               
+//               while(rs.next()){
+//                   DateFormat dtOutput = new SimpleDateFormat("dd/MM/yyyy");
+//                   consulta.setData(rs.getDate("data"));
+//                   consulta.setHora(rs.getTime("hora"));
+//                   pacientes.setNome_pac(rs.getString("pacientes.nome_pac"));
+//                   medico.setNome_med("medicos.nome_med");
+//                   consulta.setCompareceu(rs.getInt("compareceu"));
+//                   
+//                   join.add(consulta);
+//               }
+//               
+//           }catch(Exception ex){
+//                JOptionPane.showMessageDialog(null, "Erro de conexão com o banco!");
+//           }
+//           return join;
+//    }
 
 
     public Consulta procurar(int ID_Cli) {
