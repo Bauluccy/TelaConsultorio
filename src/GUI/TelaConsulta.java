@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
 
 import Classes.Consulta;
@@ -9,14 +5,19 @@ import Classes.Joins;
 import Classes.Medicos;
 import Classes.Pacientes;
 import DAO.ConsultaDAO;
+import DAO.ErpDAOException;
+import DAO.JoinsDAO;
 import DAO.MedicosDAO;
 import DAO.PacientesDAO;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -108,7 +109,9 @@ public class TelaConsulta extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         DefaultTableModel table = (DefaultTableModel) TabelaConsultas.getModel();
-        String nomePaciente, nomeMedico;
+        String nomePaciente, nomeMedico, compareceuString = null;
+        Date data;
+        Time hora;
         int compareceu;
         
         if(TabelaConsultas.getRowCount() > 0){
@@ -117,13 +120,18 @@ public class TelaConsulta extends javax.swing.JFrame {
             }
         }
         
-        ConsultaDAO CDAO;
+        JoinsDAO CDAO;
         
         try{
-            CDAO = new ConsultaDAO();
-            consultaJoin = CDAO.listar();
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Erro ao conectar com o bancoooooo.");
+            CDAO = new JoinsDAO();
+            consultaJoin = CDAO.Joins();
+        }catch(ErpDAOException e){
+            System.out.println("Erro de conexão ao banco.");
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao conectar com o banco." + ex);
+        } catch (Exception ex) {
+            Logger.getLogger(TelaConsulta.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         for(int i = 0; i < consultaJoin.size(); i++){
@@ -136,8 +144,14 @@ public class TelaConsulta extends javax.swing.JFrame {
             nomePaciente = consultaJoin.get(i).getNomePaciente();
             nomeMedico = consultaJoin.get(i).getNomeMedico();
             compareceu = consultaJoin.get(i).getCompareceu();
+            if(compareceu == 1){
+                compareceuString = "Sim";
+            }if(compareceu == 0){
+                compareceuString = "Não";
+            }
+                
             
-            table.addRow(new String[]{dataFormatada,horaFormatada,nomePaciente,nomeMedico});
+            table.addRow(new String[]{dataFormatada,horaFormatada,nomePaciente,nomeMedico, compareceuString});
         }
     }//GEN-LAST:event_jButton1MouseClicked
 

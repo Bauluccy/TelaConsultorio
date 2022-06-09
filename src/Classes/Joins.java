@@ -80,7 +80,8 @@ public class Joins {
         this.horaConsulta = horaConsulta;
     }
 
-    public Joins(Date dataConsulta, Time horaConsulta,  String nomePaciente, String nomeMedico) {
+    public Joins(Date dataConsulta, Time horaConsulta,  String nomePaciente, String nomeMedico, int compareceu) {
+        this.compareceu = compareceu;
         this.nomeMedico = nomeMedico;
         this.nomePaciente = nomePaciente;
         this.dataConsulta = dataConsulta;
