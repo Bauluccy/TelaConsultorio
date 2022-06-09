@@ -103,11 +103,6 @@ public class TelaConsulta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        
-        
-    }//GEN-LAST:event_formWindowActivated
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         DefaultTableModel table = (DefaultTableModel) TabelaConsultas.getModel();
         String nomePaciente, nomeMedico, compareceuString = null;
         Date data;
@@ -153,6 +148,9 @@ public class TelaConsulta extends javax.swing.JFrame {
             
             table.addRow(new String[]{dataFormatada,horaFormatada,nomePaciente,nomeMedico, compareceuString});
         }
+    }//GEN-LAST:event_formWindowActivated
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
     }//GEN-LAST:event_jButton1MouseClicked
 
         public static void main(String args[]) {
