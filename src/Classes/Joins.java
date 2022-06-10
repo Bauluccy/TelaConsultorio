@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 public class Joins {
+    int ID_Consulta;
     int ID_paciente;
     int ID_medico;
     String nomeMedico;
@@ -11,6 +12,14 @@ public class Joins {
     Date dataConsulta;
     Time horaConsulta;
     int compareceu;
+
+    public int getID_Consulta() {
+        return ID_Consulta;
+    }
+
+    public void setID_Consulta(int ID_Consulta) {
+        this.ID_Consulta = ID_Consulta;
+    }
 
     public int getID_paciente() {
         return ID_paciente;
@@ -71,7 +80,8 @@ public class Joins {
     public Joins() {
     }
     
-    public Joins(int ID_paciente, int ID_medico, String nomeMedico, String nomePaciente, Date dataConsulta, Time horaConsulta) {
+    public Joins(int ID_consulta,int ID_paciente, int ID_medico, String nomeMedico, String nomePaciente, Date dataConsulta, Time horaConsulta) {
+        this.ID_Consulta = ID_consulta;
         this.ID_paciente = ID_paciente;
         this.ID_medico = ID_medico;
         this.nomeMedico = nomeMedico;

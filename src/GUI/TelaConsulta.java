@@ -39,7 +39,9 @@ public class TelaConsulta extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaConsultas = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        botaoAdicionar = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -73,30 +75,35 @@ public class TelaConsulta extends javax.swing.JFrame {
             TabelaConsultas.getColumnModel().getColumn(4).setHeaderValue("Compareceu");
         }
 
-        jButton1.setText("Adicionar");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        botaoAdicionar.setText("Adicionar");
+        botaoAdicionar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                botaoAdicionarMouseClicked(evt);
             }
         });
+
+        jMenu1.setText("Opções");
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(botaoAdicionar)
+                .addContainerGap(517, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(botaoAdicionar)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,7 +126,7 @@ public class TelaConsulta extends javax.swing.JFrame {
         
         try{
             CDAO = new JoinsDAO();
-            consultaJoin = CDAO.Joins();
+            consultaJoin = CDAO.joinsListar();
         }catch(ErpDAOException e){
             System.out.println("Erro de conexão ao banco.");
         }
@@ -148,10 +155,14 @@ public class TelaConsulta extends javax.swing.JFrame {
             
             table.addRow(new String[]{dataFormatada,horaFormatada,nomePaciente,nomeMedico, compareceuString});
         }
+        
     }//GEN-LAST:event_formWindowActivated
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-    }//GEN-LAST:event_jButton1MouseClicked
+    private void botaoAdicionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAdicionarMouseClicked
+        
+        
+        
+    }//GEN-LAST:event_botaoAdicionarMouseClicked
 
         public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -187,7 +198,9 @@ public class TelaConsulta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaConsultas;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton botaoAdicionar;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
